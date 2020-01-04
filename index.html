@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Math</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<style>
+
+		p{
+			font-size: 40px;
+		}
+		.navbar .nav-item a, .navbar .navbar-brand{
+			color: #fff;
+		}
+
+		.navbar .nav-item{
+			    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    margin: 0 10px;
+    border-radius: 5px;
+		}
+		.navbar .nav-item:hover{
+			    background-color: #138496;
+    			border-color: #117a8b;
+		}
+		
+		.main{
+			background: #f1f1f1;
+			padding: 100px;
+			height: 100vh;
+
+		}
+		.number-input{
+			border: 1px solid #c4c4c4;
+		    width: 210px;
+		    border-radius: 6px;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg bg-dark">
+  <a class="navbar-brand" href="#">Number Quiz</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Addition <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Subtraction</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Multiplication</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Division</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<section class="main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p class="numbers">
+					<span id="first_number" class="number-border"></span>
+					 <span id="symbol"></span> 
+					<span id="second_number" class="number-border"></span>
+					 = 
+					<input type="text" class="number-input" id="input_result" autofocus>
+					</p>
+				</div>
+				<div class="col-md-12 text-center">
+					<button type="button" onClick="window.location.reload()" class="btn btn-info">Refresh</button>
+				</div>
+
+				<div class="col-md-12 text-center">
+					<p id="result"></p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+	<script>
+		var first_num = Math.floor(Math.random()*98+2);
+		var second_num = Math.floor(Math.random()*98+2);
+
+		var option = Math.floor(Math.random()*4+1);
+		console.log(option);
+
+		if (option == 1) {
+		var ans = first_num + second_num;
+		$('#symbol').text('+');
+		}
+
+		if (option == 2) {
+			if(first_num > second_num){
+			var ans = first_num - second_num;
+			$('#symbol').text('-');
+			}else{
+				var ans = second_num - first_num;
+			$('#symbol').text('-');
+			}
+		}
+
+		if (option == 3) {
+		var ans = first_num * second_num;
+		$('#symbol').text('*');
+		}
+
+		if (option == 4) {
+			if(first_num > second_num){
+				var ans = first_num / second_num;
+				$('#symbol').text('/');
+			}else{
+				var ans = second_num / first_num;
+				$('#symbol').text('/');
+			}
+		
+		}
+		
+		if (first_num > second_num) 
+		{
+			$('#first_number').text(first_num);
+			$('#second_number').text(second_num);	
+		}else{
+			$('#first_number').text(second_num);
+			$('#second_number').text(first_num);
+		}
+
+		$('#input_result').bind('keyup mouseup', function (){
+			$('#input_result').focus();
+			var val = $(this).val();
+			if (val == ans) {
+				$('#result').text('hurray, Your answer is right!!!');
+				window.location.reload();
+
+			}
+			
+		});
+	
+	</script>
+</body>
+</html>
